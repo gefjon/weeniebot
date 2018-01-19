@@ -19,7 +19,7 @@ class RespondingThread(threading.Thread):
         if weenie == '@{}'.format(self.tweet.user.screen_name):
             return '{} you are a weenie'.format(weenie)
         else:
-            return '{} is are a weenie'.format(weenie)
+            return '{} is a weenie'.format(weenie)
 
     def no_names(self):
         return '@{} you are a weenie'.format(self.tweet.user.screen_name)
