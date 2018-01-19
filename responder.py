@@ -1,7 +1,7 @@
 import threading
-import secret
 import tweepy
 import re
+import os
 
 
 class RespondingThread(threading.Thread):
@@ -10,8 +10,8 @@ class RespondingThread(threading.Thread):
         threading.Thread.__init__(self)
 
     def tweet_reply(self, text):
-        auth = tweepy.OAuthHandler(secret.CONSUMER_TOKEN, secret.CONSUMER_SECRET)
-        auth.set_access_token(secret.ACCESS_TOKEN, secret.ACCESS_SECRET)
+        auth = tweepy.OAuthHandler(os.environ['CONSUMER_TOKEN'], os.environ['CONSUMER_SECRET'])
+        auth.set_access_token(os.environ['ACCESS_TOKEN'], os.environ['ACCESS_SECRET'])
         api = tweepy.API(auth)
         api.update_status(text, self.tweet.id)
 

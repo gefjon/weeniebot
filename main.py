@@ -2,12 +2,12 @@
 
 import tweepy
 from listener import WeenieListener
-import secret
+import os
 
 
 def main():
-    auth = tweepy.OAuthHandler(secret.CONSUMER_TOKEN, secret.CONSUMER_SECRET)
-    auth.set_access_token(secret.ACCESS_TOKEN, secret.ACCESS_SECRET)
+    auth = tweepy.OAuthHandler(os.environ['CONSUMER_TOKEN'], os.environ['CONSUMER_SECRET'])
+    auth.set_access_token(os.environ['ACCESS_TOKEN'], os.environ['ACCESS_SECRET'])
     api = tweepy.API(auth)
     listener = WeenieListener(api)
     stream = tweepy.Stream(auth=api.auth, listener=listener)
